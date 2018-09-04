@@ -19,4 +19,9 @@ public class Player : MonoBehaviour {
 			circle.velocity = Vector2.up * jumpForce;
 		}
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		Debug.Log(collision.tag);
+	}
 }
