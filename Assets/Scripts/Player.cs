@@ -28,11 +28,13 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log(collision.tag);
+		if (collision.tag != currentColor) {
+			Debug.Log("You died!");
+		}
 	}
 
 	void SetRandomColor() {
-		int rand = Random.Range(0, 3);
+		int rand = Random.Range(0, 4);
 		switch (rand) 
 		{
 			case 0:
