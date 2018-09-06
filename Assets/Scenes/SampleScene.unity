@@ -477,7 +477,9 @@ MonoBehaviour:
   pink: {r: 1, g: 0, b: 0.5019608, a: 1}
   purple: {r: 0.54901963, g: 0.07450981, b: 0.9843138, a: 1}
   scoreText: {fileID: 1846601468}
-  obstacle: {fileID: 1636966473297738, guid: 16b723ae0ede807478a94521a9fa6f39, type: 2}
+  obstacles:
+  - {fileID: 1636966473297738, guid: 16b723ae0ede807478a94521a9fa6f39, type: 2}
+  - {fileID: 1022229243539052, guid: cecbaa6f99b8fab4da80d855f38423f9, type: 2}
   colorChanger: {fileID: 1685223063774106, guid: 1f795a6757d6af64592435037c99e3bb,
     type: 2}
 --- !u!1 &1846601466

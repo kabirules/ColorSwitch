@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	public static int score = 0;
 	public Text scoreText;
 
-	public GameObject obstacle;
+	public GameObject[] obstacles;
 	public GameObject colorChanger;
 
 	// Use this for initialization
@@ -39,7 +39,8 @@ public class Player : MonoBehaviour {
 		if (collision.tag == "Scored") {
 			score++;
 			Destroy(collision.gameObject);
-			Instantiate(obstacle, new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
+			int rand = Random.Range(0, 2);
+			Instantiate(obstacles[rand], new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
 			return;
 		}
 		if (collision.tag == "ColorChanger") {
