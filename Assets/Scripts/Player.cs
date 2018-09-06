@@ -17,6 +17,9 @@ public class Player : MonoBehaviour {
 	public static int score = 0;
 	public Text scoreText;
 
+	public GameObject obstacle;
+	public GameObject colorChanger;
+
 	// Use this for initialization
 	void Start () {
 		SetRandomColor();
@@ -36,11 +39,13 @@ public class Player : MonoBehaviour {
 		if (collision.tag == "Scored") {
 			score++;
 			Destroy(collision.gameObject);
+			Instantiate(obstacle, new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
 			return;
 		}
 		if (collision.tag == "ColorChanger") {
 			SetRandomColor();
 			Destroy(collision.gameObject);
+			Instantiate(colorChanger, new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
 			return;
 		}
 		if (collision.tag != currentColor) {
