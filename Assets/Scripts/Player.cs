@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	public Color purple;
 	public static int score = 0;
 	public Text scoreText;
+	public GameObject answerPrefab;
 
 	// Math
 	public int initalValue = 0;
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour {
 	public int downLimit = 1; // Random generated numbers must equal or higher than downLimit
 	public int currentValue = 0;
 	public int generatedValue = 0;
+	public int generatedWrongValue1 = 0; // Random generated number, it will be the wrong answer 1
+	public int generatedWrongValue2 = 0; // Random generated number, it will be the wrong answer 2
 	public int targetValue = 0;
 	public int endValue = 100;	
 	public Text targetText;
@@ -32,9 +35,11 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SetRandomColor();
+		// SetRandomColor();
 		PlayerInit();
 		this.GenerateRandomNumber();
+		this.GenerateRandomWrongNumbers();
+		this.GenerateAnswers();
 	}
 	
 	// Update is called once per frame
@@ -56,7 +61,7 @@ public class Player : MonoBehaviour {
 			return;
 		}
 		if (collision.tag == "ColorChanger") {
-			SetRandomColor();
+			// SetRandomColor();
 			Destroy(collision.gameObject);
 			Instantiate(colorChanger, new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
 			return;
@@ -68,28 +73,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void SetRandomColor() {
-		int rand = Random.Range(0, 4);
-		switch (rand) 
-		{
-			case 0:
-				currentColor = "Blue";
-				sr.color = blue;
-				break;
-			case 1:
-				currentColor = "Yellow";
-				sr.color = yellow;
-				break;
-			case 2:
-				currentColor = "Pink";
-				sr.color = pink;
-				break;
-			case 3:
-				currentColor = "Purple";
-				sr.color = purple;
-				break;								
-		}
-	}
+
 
 	//////////////////////////////
 	// Math
@@ -110,6 +94,28 @@ public class Player : MonoBehaviour {
 		this.generatedValue = aux;
 		this.targetValue = aux + this.currentValue;
 		this.targetText.text = this.targetValue.ToString();
-	}	
+	}
+
+	// Create three different numbers for the answers
+	public void GenerateRandomWrongNumbers() {
+		this.generatedWrongValue1 = this.generatedValue;
+		this.generatedWrongValue2 = this.generatedValue;
+		while (this.generatedWrongValue1 == this.generatedValue)
+		{
+			int aux = Random.Range(downLimit, upLimit);
+			this.generatedWrongValue1 = aux;
+		}
+		while (this.generatedWrongValue2 == this.generatedValue ||
+			   this.generatedWrongValue2 == this.generatedWrongValue1) 
+		{
+			int aux = Random.Range(downLimit, upLimit);
+			this.generatedWrongValue2 = aux;
+		}
+	}
+
+	// Instantite three diffent answers with the numbers
+	public void GenerateAnswers() {
+
+	}
 
 }
