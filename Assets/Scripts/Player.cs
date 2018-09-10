@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Player : MonoBehaviour {
 
@@ -16,7 +17,6 @@ public class Player : MonoBehaviour {
 	public Color purple;
 	public static int score = 0;
 	public Text scoreText;
-	public GameObject answerPrefab;
 
 	// Math
 	public int initalValue = 0;
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
 	public int targetValue = 0;
 	public int endValue = 100;	
 	public Text targetText;
+	public GameObject answerPrefab;
 
 	public GameObject[] obstacles;
 	public GameObject colorChanger;
@@ -115,7 +116,18 @@ public class Player : MonoBehaviour {
 
 	// Instantite three diffent answers with the numbers
 	public void GenerateAnswers() {
-
+		GameObject answer1 = Instantiate(answerPrefab, new Vector2(transform.position.x-2f, transform.position.y+6f), transform.rotation);
+		GameObject answer2 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y+6f), transform.rotation);
+		GameObject answer3 = Instantiate(answerPrefab, new Vector2(transform.position.x+2f, transform.position.y+6f), transform.rotation);
+		// Set the numbers randomly in the answers
+		int[] array = { this.generatedWrongValue1, this.generatedWrongValue2, this.generatedValue };
+		int aux = Random.Range(0, 3);
+		answer1.GetComponentInChildren<TextMesh>().text = array[aux].ToString();
+		array = array.Except(new int[]{array[aux]}).ToArray();
+		aux = Random.Range(0, 2);
+		answer2.GetComponentInChildren<TextMesh>().text = array[aux].ToString();
+		array = array.Except(new int[]{array[aux]}).ToArray();
+		answer3.GetComponentInChildren<TextMesh>().text = array[0].ToString();
 	}
 
 }

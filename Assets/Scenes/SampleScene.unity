@@ -399,9 +399,13 @@ MonoBehaviour:
   downLimit: 1
   currentValue: 0
   generatedValue: 0
+  generatedWrongValue1: 0
+  generatedWrongValue2: 0
   targetValue: 0
   endValue: 100
   targetText: {fileID: 1846601468}
+  answerPrefab: {fileID: 1486302375866630, guid: e044bf85681c8934bb114c6ee5ae266f,
+    type: 2}
   obstacles:
   - {fileID: 1636966473297738, guid: 16b723ae0ede807478a94521a9fa6f39, type: 2}
   - {fileID: 1022229243539052, guid: cecbaa6f99b8fab4da80d855f38423f9, type: 2}
