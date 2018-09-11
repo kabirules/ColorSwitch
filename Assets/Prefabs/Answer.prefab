@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212868546352627176}
   - component: {fileID: 50166627681271446}
   - component: {fileID: 58507431061379304}
+  - component: {fileID: 114923456137006254}
   m_Layer: 0
   m_Name: Answer
   m_TagString: Answer
@@ -164,6 +165,17 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &114923456137006254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486302375866630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a047ef903d353498a94822066404f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212868546352627176
 SpriteRenderer:
   m_ObjectHideFlags: 1
