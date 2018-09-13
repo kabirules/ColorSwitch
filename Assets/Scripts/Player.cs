@@ -33,21 +33,25 @@ public class Player : MonoBehaviour {
 	GameObject answer1;
 	GameObject answer2;
 	GameObject answer3;
+	public GameObject explosion;
+	GameObject panel;
 
 	public GameObject[] obstacles;
 	public GameObject colorChanger;
 
 	// Use this for initialization
 	void Start () {
+		panel = GameObject.Find("Panel");
 		PlayerInit();
 		this.newAnswer();
 	}
 
 	void newAnswer() {
+		panel.SetActive(false);
+		GameObject.Find("Player").GetComponentInChildren<TextMesh>().text = this.currentValue.ToString();
 		this.GenerateRandomNumber();
 		this.GenerateRandomWrongNumbers();
 		this.GenerateAnswers();
-		GameObject.Find("Player").GetComponentInChildren<TextMesh>().text = this.currentValue.ToString();
 	}
 	
 	// Update is called once per frame
@@ -125,9 +129,9 @@ public class Player : MonoBehaviour {
 
 	// Instantite three diffent answers with the numbers
 	public void GenerateAnswers() {
-		answer1 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y), transform.rotation);
-		answer2 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y), transform.rotation);
-		answer3 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y), transform.rotation);
+		answer1 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y+3f), transform.rotation);
+		answer2 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y+3f), transform.rotation);
+		answer3 = Instantiate(answerPrefab, new Vector2(transform.position.x, transform.position.y+3f), transform.rotation);
 		// Set the numbers randomly in the answers
 		int[] array = { this.generatedWrongValue1, this.generatedWrongValue2, this.generatedValue };
 		int aux = Random.Range(0, 3);
@@ -145,12 +149,18 @@ public class Player : MonoBehaviour {
 			if (answer == this.generatedValue.ToString()) {
 				Debug.Log("Correct");
 				this.currentValue = this.currentValue + this.generatedValue;
+				Instantiate(explosion, new Vector2(answer1.transform.position.x, answer1.transform.position.y), transform.rotation);
 				Destroy(answer1);
+				Instantiate(explosion, new Vector2(answer2.transform.position.x, answer2.transform.position.y), transform.rotation);
 				Destroy(answer2);
+				Instantiate(explosion, new Vector2(answer3.transform.position.x, answer3.transform.position.y), transform.rotation);
 				Destroy(answer3);
 				this.newAnswer();
 			} else {
 				Debug.Log("Wrong");
+				Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
+				gameObject.SetActive(false);
+				panel.SetActive(true);
 			}
 		}
 	}

@@ -12,6 +12,7 @@ TagManager:
   - Scored
   - Answer
   - Target
+  - Panel
   layers:
   - Default
   - TransparentFX
