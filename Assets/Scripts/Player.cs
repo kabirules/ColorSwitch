@@ -68,7 +68,6 @@ public class Player : MonoBehaviour {
 		if (transform.position.y < this.maxY -5f) {
 			this.KillPlayer();
 		}
-		Debug.Log(this.maxY + " - " + transform.position.y);
 	}
 
 	/*
