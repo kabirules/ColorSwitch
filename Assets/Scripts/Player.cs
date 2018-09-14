@@ -165,5 +165,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-
+	public void ReloadScene() {
+		Scene scene = SceneManager.GetActiveScene(); 
+		SceneManager.LoadScene(scene.name);
+	}
 }
