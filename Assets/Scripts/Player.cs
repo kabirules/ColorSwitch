@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 	GameObject answer3;
 	public GameObject explosion;
 	GameObject panel;
+	float maxY; // the highest point the player every got
 
 	public GameObject[] obstacles;
 	public GameObject colorChanger;
@@ -60,7 +61,14 @@ public class Player : MonoBehaviour {
 		{
 			circle.velocity = Vector2.up * jumpForce;
 		}
-		//scoreText.text = score.ToString();
+		if (this.maxY < transform.position.y) {
+			this.maxY = transform.position.y;
+		}
+		// Kill the Player if gets too low
+		if (transform.position.y < this.maxY -5f) {
+			this.KillPlayer();
+		}
+		Debug.Log(this.maxY + " - " + transform.position.y);
 	}
 
 	/*
@@ -94,6 +102,7 @@ public class Player : MonoBehaviour {
 	//////////////////////////////
 	public void PlayerInit() {
 		this.initalValue = 0;
+		this.maxY = transform.position.y;
 		GameObject.Find("Player").GetComponentInChildren<TextMesh>().text = this.initalValue.ToString();
 	}
 
@@ -157,12 +166,15 @@ public class Player : MonoBehaviour {
 				Destroy(answer3);
 				this.newAnswer();
 			} else {
-				Debug.Log("Wrong");
-				Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
-				gameObject.SetActive(false);
-				panel.SetActive(true);
+				this.KillPlayer();
 			}
 		}
+	}
+
+	void KillPlayer() {
+		Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
+		gameObject.SetActive(false);
+		panel.SetActive(true);
 	}
 
 	public void ReloadScene() {
