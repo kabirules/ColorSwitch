@@ -1,4 +1,0 @@
-#Sat Sep 15 22:22:14 CEST 2018
-base.0=E\:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\transforms\\dex\\release\\folders\\1000\\1f\\main
-renamed.0=classes.dex
-file.0=E\:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\transforms\\dex\\release\\folders\\1000\\1f\\main\\classes.dex

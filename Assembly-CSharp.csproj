@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Answer.cs" />
+     <Compile Include="Assets\Scripts\AnswerHome.cs" />
      <Compile Include="Assets\Scripts\DestroyByTime.cs" />
      <Compile Include="Assets\Scripts\Follow.cs" />
+     <Compile Include="Assets\Scripts\HomeManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Rotation.cs" />
  <Reference Include="UnityEditor.StandardEvents">

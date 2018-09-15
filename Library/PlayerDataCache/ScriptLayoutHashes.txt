@@ -2,7 +2,8 @@ Android
 PlayerPath?
 E:/Disco F/Unity/ColorSwitch/MathBalls.apk
 SceneListBegin?
-Assets/Scenes/SampleScene.unity
+Assets/Scenes/Home.unity
+Assets/Scenes/Main.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -150,3 +151,5 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DestroyByTime
 24bb26e7da03092690ef38ebcd7ec1c0 Assembly-CSharp.dll:.Follow
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Answer
+6d2fed685a228c2436d98be0f3bbd4ac Assembly-CSharp.dll:.HomeManager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AnswerHome

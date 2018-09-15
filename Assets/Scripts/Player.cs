@@ -72,31 +72,12 @@ public class Player : MonoBehaviour {
 		if (transform.position.y < this.maxY -5f) {
 			this.KillPlayer();
 		}
+        if (Input.GetKey("escape"))
+        {
+            SceneManager.LoadScene("Home");
+        }		
 	}
 
-	/*
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.tag == "Scored") {
-			score++;
-			Destroy(collision.gameObject);
-			int rand = Random.Range(0, 2);
-			Instantiate(obstacles[rand], new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
-			return;
-		}
-		if (collision.tag == "ColorChanger") {
-			// SetRandomColor();
-			Destroy(collision.gameObject);
-			Instantiate(colorChanger, new Vector2(transform.position.x, transform.position.y+7f), transform.rotation);
-			return;
-		}
-		if (collision.tag != currentColor) {
-			Debug.Log("You died!");
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-			score = 0;
-		}
-	}
-	*/
 
 
 
@@ -183,4 +164,8 @@ public class Player : MonoBehaviour {
 		Scene scene = SceneManager.GetActiveScene(); 
 		SceneManager.LoadScene(scene.name);
 	}
+
+	public void BackHome() {
+		SceneManager.LoadScene("Home");
+	}	
 }
