@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81f385411df941439a50fba2bce61ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 8
+  jumpForce: 10
   circle: {fileID: 1456829962}
   currentColor: 
   sr: {fileID: 1456829959}

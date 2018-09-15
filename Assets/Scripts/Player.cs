@@ -43,13 +43,16 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		panel = GameObject.Find("Panel");
+		panel.SetActive(false);
 		PlayerInit();
 		this.newAnswer();
+		for (int i=0; i<4000; i++) {
+			// just a delay...
+		}		
 	}
 
 	void newAnswer() {
-		panel.SetActive(false);
-		GameObject.Find("Player").GetComponentInChildren<TextMesh>().text = this.currentValue.ToString();
+		gameObject.GetComponentInChildren<TextMesh>().text = this.currentValue.ToString();
 		this.GenerateRandomNumber();
 		this.GenerateRandomWrongNumbers();
 		this.GenerateAnswers();
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour {
 	public void PlayerInit() {
 		this.initalValue = 0;
 		this.maxY = transform.position.y;
-		GameObject.Find("Player").GetComponentInChildren<TextMesh>().text = this.initalValue.ToString();
+		gameObject.GetComponentInChildren<TextMesh>().text = this.initalValue.ToString();
 	}
 
 	// Create a random number with this conditions
@@ -155,7 +158,6 @@ public class Player : MonoBehaviour {
 		if (collision.tag == "Answer") {
 			string answer = collision.GetComponentInChildren<TextMesh>().text;
 			if (answer == this.generatedValue.ToString()) {
-				Debug.Log("Correct");
 				this.currentValue = this.currentValue + this.generatedValue;
 				Instantiate(explosion, new Vector2(answer1.transform.position.x, answer1.transform.position.y), transform.rotation);
 				Destroy(answer1);
