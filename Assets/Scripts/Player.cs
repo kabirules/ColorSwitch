@@ -48,6 +48,7 @@ public class Player : MonoBehaviour {
 		this.newAnswer();
 		for (int i=0; i<4000; i++) {
 			// just a delay...
+			Debug.Log(i);
 		}		
 	}
 

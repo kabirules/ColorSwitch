@@ -27,6 +27,8 @@ public class Answer : MonoBehaviour {
 		direction = new Vector2(directionX, directionY);
 		// Give the answer a random speed
 		speed = Random.Range(1f, 3f);
+		// Give the answer a random color
+		this.SetAnswerColor();
 	}
 	
 	// Update is called once per frame
@@ -48,4 +50,26 @@ public class Answer : MonoBehaviour {
 			direction = new Vector2(direction.x, System.Math.Abs(direction.y));
 		}
 	}
+
+	void SetAnswerColor() {
+		int num = Random.Range(0, 8);
+		if (num == 0) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+		} else if (num == 1) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+		} else if (num == 2) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+		} else if (num == 3) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+		} else if (num == 4) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+		} else if (num == 5) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+		} else if (num == 6) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+		} else if (num == 7) {
+			gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+		}
+	}
+		
 }
