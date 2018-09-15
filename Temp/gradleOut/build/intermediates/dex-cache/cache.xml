@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\Disco F\Unity\ColorSwitch\Temp\gradleOut\libs\unity-classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.1"
+        sha1="db401f4021204ed29e821e60c9f18d97be57ff54">
+        <dex dex="E:\Disco F\Unity\ColorSwitch\Temp\gradleOut\build\intermediates\pre-dexed\release\unity-classes_6ddcaa9f03d030386ed779c0e318065274fe4447.jar" />
+    </item>
+
+</items>
