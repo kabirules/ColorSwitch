@@ -139,7 +139,9 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision)	{
 		if (collision.tag == "Answer") {
 			string answer = collision.GetComponentInChildren<TextMesh>().text;
+			// AudioSource answerAudioData = collision.GetComponent<AudioSource>();
 			if (answer == this.generatedValue.ToString()) {
+				// answerAudioData.Play();
 				this.currentValue = this.currentValue + this.generatedValue;
 				Instantiate(explosion, new Vector2(answer1.transform.position.x, answer1.transform.position.y), transform.rotation);
 				Destroy(answer1);
@@ -155,6 +157,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void KillPlayer() {
+		// AudioSource playerAudioData = GetComponent<AudioSource>();
+		// playerAudioData.Play();
 		Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
 		gameObject.SetActive(false);
 		panel.SetActive(true);
