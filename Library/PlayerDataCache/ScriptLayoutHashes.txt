@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-E:/Disco F/Unity/ColorSwitch/MathBalls.apk
+E:/Disco F/Unity/ColorSwitch/MathBalls1.apk
 SceneListBegin?
 Assets/Scenes/Home.unity
 Assets/Scenes/Main.unity
@@ -131,6 +131,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AnswerHome
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 f02726adeff0a3ec5905565234b372da UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -150,6 +151,5 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DestroyByTime
 24bb26e7da03092690ef38ebcd7ec1c0 Assembly-CSharp.dll:.Follow
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Answer
 6d2fed685a228c2436d98be0f3bbd4ac Assembly-CSharp.dll:.HomeManager
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AnswerHome
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Answer
