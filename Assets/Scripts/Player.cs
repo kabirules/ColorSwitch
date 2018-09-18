@@ -36,6 +36,8 @@ public class Player : MonoBehaviour {
 	public GameObject explosion;
 	GameObject panel;
 	float maxY; // the highest point the player every got
+	public GameObject playerFX;
+	public GameObject answerFX;
 
 	public GameObject[] obstacles;
 	public GameObject colorChanger;
@@ -139,10 +141,9 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision)	{
 		if (collision.tag == "Answer") {
 			string answer = collision.GetComponentInChildren<TextMesh>().text;
-			AudioSource answerAudioData = collision.GetComponent<AudioSource>();
+			AudioSource answerAudioData = answerFX.GetComponent<AudioSource>();
 			if (answer == this.generatedValue.ToString()) {
 				answerAudioData.Play();
-				Debug.Log("Play");
 				this.currentValue = this.currentValue + this.generatedValue;
 				Instantiate(explosion, new Vector2(answer1.transform.position.x, answer1.transform.position.y), transform.rotation);
 				Destroy(answer1);
@@ -158,11 +159,10 @@ public class Player : MonoBehaviour {
 	}
 
 	void KillPlayer() {
-		AudioSource playerAudioData = GetComponent<AudioSource>();
+		AudioSource playerAudioData = playerFX.GetComponent<AudioSource>();
 		playerAudioData.Play();
-		Debug.Log(playerAudioData);
 		Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
-		//gameObject.SetActive(false);
+		gameObject.SetActive(false);
 		panel.SetActive(true);
 	}
 
