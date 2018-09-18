@@ -160,9 +160,9 @@ public class Player : MonoBehaviour {
 	void KillPlayer() {
 		AudioSource playerAudioData = GetComponent<AudioSource>();
 		playerAudioData.Play();
-		Debug.Log("Play");
+		Debug.Log(playerAudioData);
 		Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 		panel.SetActive(true);
 	}
 
