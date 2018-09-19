@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "67436826894",
+    "firebase_url": "https://mathballs-0000.firebaseio.com",
+    "project_id": "mathballs-0000",
+    "storage_bucket": "mathballs-0000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67436826894:android:6a9bf8c0b890c3d5",
+        "android_client_info": {
+          "package_name": "com.javifont.mathballs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67436826894-e5ql2e38tjelv83pogd37iddmp67sper.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvf4_MRnx6uNG-fU7a6ebNXRacq0t8os0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

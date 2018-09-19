@@ -12,6 +12,7 @@ public class HomeManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		FirebaseInit();
 		GenerateAnswers();
 	}
 	
@@ -32,4 +33,24 @@ public class HomeManager : MonoBehaviour {
 		answer2 = Instantiate(answerPrefab, new Vector2(-3f, 3f), transform.rotation);
 		answer3 = Instantiate(answerPrefab, new Vector2(3f, -3f), transform.rotation);
 	}
+
+	////////////////
+	/// FIREBASE ///
+	////////////////
+
+	private void FirebaseInit() {
+		Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
+			var dependencyStatus = task.Result;
+			if (dependencyStatus == Firebase.DependencyStatus.Available) {
+				// Set a flag here indiciating that Firebase is ready to use by your
+				// application.
+				Debug.Log("Firebase ready!");
+			} else {
+				UnityEngine.Debug.LogError(System.String.Format(
+				"Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+				// Firebase Unity SDK is not safe to use here.
+			}
+		});
+	}
 }
+
