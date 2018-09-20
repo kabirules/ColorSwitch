@@ -258,6 +258,30 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
+ <Reference Include="Firebase.App">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Auth">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Platform">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.MiniJson">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.Sharpen">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Database">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Mono/Firebase.Database.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Compat">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Tasks">
+ <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/usuario/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -266,30 +290,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/usuario/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Compat">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
- </Reference>
- <Reference Include="Google.MiniJson">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
- </Reference>
- <Reference Include="Google.Sharpen">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
- </Reference>
- <Reference Include="Firebase.Platform">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Tasks">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
- </Reference>
- <Reference Include="Firebase.Database">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Mono/Firebase.Database.dll</HintPath>
- </Reference>
- <Reference Include="Firebase.Auth">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
- </Reference>
- <Reference Include="Firebase.App">
- <HintPath>E:/Disco F/Unity/ColorSwitch/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>E:/Unity/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>
