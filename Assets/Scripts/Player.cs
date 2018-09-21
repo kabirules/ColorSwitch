@@ -4,19 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+using Firebase.Database;
 
 public class Player : MonoBehaviour {
 
 	public float jumpForce = 10f;
 	public Rigidbody2D circle;
-	public string currentColor;
-	public SpriteRenderer sr;
-	public Color blue;
-	public Color yellow;
-	public Color pink;
-	public Color purple;
-	public static int score = 0;
-	public Text scoreText;
 
 	// Math
 	public int initalValue = 0;
@@ -27,7 +20,7 @@ public class Player : MonoBehaviour {
 	public int generatedWrongValue1 = 0; // Random generated number, it will be the wrong answer 1
 	public int generatedWrongValue2 = 0; // Random generated number, it will be the wrong answer 2
 	public int targetValue = 0;
-	public int endValue = 100;	
+	public int endValue = 99999999;	
 	public Text targetText;
 	public GameObject answerPrefab;
 	GameObject answer1;
@@ -38,9 +31,6 @@ public class Player : MonoBehaviour {
 	float maxY; // the highest point the player every got
 	public GameObject playerFX;
 	public GameObject answerFX;
-
-	public GameObject[] obstacles;
-	public GameObject colorChanger;
 
 	// Use this for initialization
 	void Start () {
@@ -164,6 +154,8 @@ public class Player : MonoBehaviour {
 		Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
 		gameObject.SetActive(false);
 		panel.SetActive(true);
+		PlayerPrefs.SetInt("myhiscore", this.currentValue);
+		this.IsHiScore(this.currentValue, PlayerPrefs.GetString("snapshot"));
 	}
 
 	public void ReloadScene() {
@@ -173,5 +165,10 @@ public class Player : MonoBehaviour {
 
 	public void BackHome() {
 		SceneManager.LoadScene("Home");
-	}	
+	}
+
+	public bool IsHiScore(int myScore, string snapshot) {
+		Debug.Log("IsHiScore");
+		return true;
+	}
 }

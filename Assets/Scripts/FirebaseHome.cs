@@ -12,6 +12,7 @@ public class FirebaseHome : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayerPrefs.DeleteKey("snapshot");
+		PlayerPrefs.DeleteKey("myhiscore");
 		FirebaseInit();
 	}
 	
