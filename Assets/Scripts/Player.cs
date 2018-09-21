@@ -31,9 +31,13 @@ public class Player : MonoBehaviour {
 	float maxY; // the highest point the player every got
 	public GameObject playerFX;
 	public GameObject answerFX;
+	GameObject camera;
+	FirebaseManagement firebaseManagement;
 
 	// Use this for initialization
 	void Start () {
+		camera = GameObject.Find("Main Camera");
+		this.firebaseManagement = camera.GetComponent<FirebaseManagement>();
 		panel = GameObject.Find("Panel");
 		panel.SetActive(false);
 		PlayerInit();
@@ -155,7 +159,7 @@ public class Player : MonoBehaviour {
 		gameObject.SetActive(false);
 		panel.SetActive(true);
 		PlayerPrefs.SetInt("myhiscore", this.currentValue);
-		this.IsHiScore(this.currentValue, PlayerPrefs.GetString("snapshot"));
+		this.firebaseManagement.IsHiScore(this.currentValue);
 	}
 
 	public void ReloadScene() {
@@ -165,10 +169,5 @@ public class Player : MonoBehaviour {
 
 	public void BackHome() {
 		SceneManager.LoadScene("Home");
-	}
-
-	public bool IsHiScore(int myScore, string snapshot) {
-		Debug.Log("IsHiScore");
-		return true;
 	}
 }
