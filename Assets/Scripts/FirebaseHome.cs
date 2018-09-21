@@ -7,14 +7,19 @@ using Firebase.Unity.Editor;
 
 public class FirebaseHome : MonoBehaviour {
 
+	string snapshot;
+
 	// Use this for initialization
 	void Start () {
+		PlayerPrefs.DeleteKey("snapshot");
 		FirebaseInit();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (PlayerPrefs.GetString("snapshot") == "") {
+			PlayerPrefs.SetString("snapshot", this.snapshot);
+		}
 	}
 
 	////////////////
@@ -37,27 +42,18 @@ public class FirebaseHome : MonoBehaviour {
 		FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
 			var dependencyStatus = task.Result;
 			if (dependencyStatus == Firebase.DependencyStatus.Available) {
-				// Set a flag here indiciating that Firebase is ready to use by your
-				// application.
+				// Set a flag here indiciating that Firebase is ready to use by your application.
 				Debug.Log("Firebase ready!");
 				FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
 				DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 				HiScore hiscore1 = new HiScore("Manolo", 100);
-				HiScore hiscore2 = new HiScore("Juanito", 200);
-				HiScore hiscore3 = new HiScore("Rodolfito", 50);
-				List<HiScore> hiscores = new List<HiScore>();
-				hiscores.Add(hiscore1);
-				hiscores.Add(hiscore2);
-				hiscores.Add(hiscore3);
-				string json = JsonUtility.ToJson(hiscore2);
-				// reference.Child("hiscore").SetRawJsonValueAsync(json);
 				string key = reference.Child("hiscore").Push().Key;
 				Dictionary<string, object> hiscore1Dict = new Dictionary<string, object>();
 				hiscore1Dict["user"] = hiscore1.user;
 				hiscore1Dict["score"] = hiscore1.score;
 				Dictionary<string, object> dict = new Dictionary<string, object>();
 				dict["/hiscore/"+key] = hiscore1Dict;
-				reference.UpdateChildrenAsync(dict);
+				// reference.UpdateChildrenAsync(dict);
 				// Read data
 				FirebaseDatabase.DefaultInstance
 					.GetReference("hiscore")
@@ -67,10 +63,14 @@ public class FirebaseHome : MonoBehaviour {
         				} else if (task1.IsCompleted) {
 							DataSnapshot snapshot = task1.Result;
 							// Do something with snapshot...
-							Debug.Log(snapshot.GetRawJsonValue());
-							HiScore oneHiscore = JsonUtility.FromJson<HiScore>(snapshot.GetRawJsonValue());
-							Debug.Log(oneHiscore.score);
-							Debug.Log(oneHiscore.user);
+							this.snapshot = snapshot.GetRawJsonValue();
+							foreach(var rules in snapshot.Children) {
+								Debug.LogFormat("Key = {0}", rules.Key);
+								foreach(var levels in rules.Children) {
+									Debug.Log(levels.Key);
+									Debug.Log(levels.Value);
+								}
+							}
 						}
       			});				
 			} else {
@@ -80,4 +80,17 @@ public class FirebaseHome : MonoBehaviour {
 			}
 		});
 	}	
+
+	//Insert
+	/*
+				HiScore hiscore1 = new HiScore("Manolo", 100);
+				HiScore hiscore2 = new HiScore("Juanito", 200);
+				HiScore hiscore3 = new HiScore("Rodolfito", 50);
+				List<HiScore> hiscores = new List<HiScore>();
+				hiscores.Add(hiscore1);
+				hiscores.Add(hiscore2);
+				hiscores.Add(hiscore3);
+				string json = JsonUtility.ToJson(hiscore2);
+				reference.Child("hiscore").SetRawJsonValueAsync(json);	
+	 */
 }
