@@ -4,11 +4,14 @@ using UnityEngine;
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
+using System.Linq;
 
 public class FirebaseManagement : MonoBehaviour {
 
 	string strSnapshot;
 	public DataSnapshot snapshot;
+
+	public int HISCORE_ELEMENTS = 5; //Max number of elements in the hiscore list/table
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +41,8 @@ public class FirebaseManagement : MonoBehaviour {
             this.user = user;
             this.score = score;
         }
+
+        public HiScore(){}
     }	
 
 	private void FirebaseInit() {
@@ -67,10 +72,10 @@ public class FirebaseManagement : MonoBehaviour {
 							// Do something with snapshot...
 							this.strSnapshot = this.snapshot.GetRawJsonValue();
 							foreach(var rules in this.snapshot.Children) {
-								Debug.LogFormat("Key = {0}", rules.Key);
+								// Debug.LogFormat("Key = {0}", rules.Key);
 								foreach(var levels in rules.Children) {
-									Debug.Log(levels.Key);
-									Debug.Log(levels.Value);
+									// Debug.Log(levels.Key);
+									// Debug.Log(levels.Value);
 								}
 							}
 						}
@@ -86,12 +91,14 @@ public class FirebaseManagement : MonoBehaviour {
 	// True if the passed score is top ten (or three, or five, or...)
 	public bool IsHiScore(int myScore) {
 		bool result = false;
-		foreach(var rules in this.snapshot.Children) {
-			foreach(var levels in rules.Children) {
-				if (levels.Key == "score") {
-					int score = (System.Convert.ToInt32(levels.Value)); 
-					if (score < myScore) {
-						return true;
+		if (this.snapshot != null) {
+			foreach(var rules in this.snapshot.Children) {
+				foreach(var levels in rules.Children) {
+					if (levels.Key == "score") {
+						int score = (System.Convert.ToInt32(levels.Value)); 
+						if (score < myScore) {
+							return true;
+						}
 					}
 				}
 			}
@@ -103,6 +110,42 @@ public class FirebaseManagement : MonoBehaviour {
 	// including the one passed by parameter
 	public void SaveHiScore(string user, int score) {
 		HiScore myHiScore = new HiScore(user, score);
+		List<HiScore> hiScores = new List<HiScore>();
+		hiScores.Add(myHiScore);
+		foreach(var rules in this.snapshot.Children) {
+			HiScore newHiScore = new HiScore();
+			foreach(var levels in rules.Children) {
+				if (levels.Key == "score") {
+					newHiScore.score = (System.Convert.ToInt32(levels.Value)); 
+				} else if (levels.Key == "user") {
+					newHiScore.user = (string)levels.Value; 
+				}
+			}
+			hiScores.Add(newHiScore);
+		}
+		List<HiScore> sortedHiScores = hiScores.OrderByDescending(o=>o.score).ToList();
+		foreach(var hiScore in sortedHiScores) {
+			Debug.Log(hiScore.user + ": " + hiScore.score);
+		}
+		// Actually save the correctly sorted list
+		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
+		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+		// Remove first all the elements of the list
+		reference.Child("hiscore").SetRawJsonValueAsync("{}");
+		int i = 0;
+		foreach(var hiScore in sortedHiScores) {
+			i++;
+			if (i <= this.HISCORE_ELEMENTS) {
+				string key = reference.Child("hiscore").Push().Key;
+				Debug.Log(key);
+				Dictionary<string, object> hiscoreDict = new Dictionary<string, object>();
+				hiscoreDict["user"] = hiScore.user;
+				hiscoreDict["score"] = hiScore.score;
+				Dictionary<string, object> dict = new Dictionary<string, object>();
+				dict["/hiscore/"+key] = hiscoreDict;
+				reference.UpdateChildrenAsync(dict);
+			}		
+		}
 	}
 
 	//Insert

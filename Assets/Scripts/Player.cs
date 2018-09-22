@@ -44,7 +44,8 @@ public class Player : MonoBehaviour {
 		this.newAnswer();
 		for (int i=0; i<4000; i++) {
 			// just a delay...
-			Debug.Log(i);
+			// Debug.Log(i);
+			int a = 0;
 		}		
 	}
 
@@ -159,7 +160,10 @@ public class Player : MonoBehaviour {
 		gameObject.SetActive(false);
 		panel.SetActive(true);
 		PlayerPrefs.SetInt("myhiscore", this.currentValue);
-		this.firebaseManagement.IsHiScore(this.currentValue);
+		if (this.firebaseManagement.IsHiScore(this.currentValue)) {
+			// TODO ask for username
+			this.firebaseManagement.SaveHiScore("username", this.currentValue);
+		};
 	}
 
 	public void ReloadScene() {
