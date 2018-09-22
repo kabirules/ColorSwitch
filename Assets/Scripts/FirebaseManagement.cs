@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
@@ -13,11 +14,27 @@ public class FirebaseManagement : MonoBehaviour {
 	public DataSnapshot snapshot;
 
 	public int HISCORE_ELEMENTS = 5; //Max number of elements in the hiscore list/table
-	string activeScene;
+	bool hiScore;
+	Text name1;
+	Text score1;
+	Text name2;
+	Text score2;
+	Text name3;
+	Text score3;
+	Text name4;
+	Text score4;
+	Text name5;
+	Text score5;
+
+	bool renderOnce;
 
 	// Use this for initialization
 	void Start () {
-		this.activeScene = SceneManager.GetActiveScene().name;
+		this.renderOnce = true;
+		this.hiScore = SceneManager.GetActiveScene().name == "HiScore";
+		if (this.hiScore) {
+			this.GetTexts();
+		}
 		// PlayerPrefs.DeleteKey("snapshot");
 		// PlayerPrefs.DeleteKey("myhiscore");
 		FirebaseInit();
@@ -27,6 +44,10 @@ public class FirebaseManagement : MonoBehaviour {
 	void Update () {
 		if (PlayerPrefs.GetString("snapshot") == "") {
 			PlayerPrefs.SetString("snapshot", this.strSnapshot);
+		}
+		if (this.snapshot != null && this.hiScore && this.renderOnce) {
+			this.RenderHiScores();
+			this.renderOnce = false;
 		}
 	}
 
@@ -66,9 +87,9 @@ public class FirebaseManagement : MonoBehaviour {
 							this.snapshot = task1.Result;
 							// Do something with snapshot...
 							this.strSnapshot = this.snapshot.GetRawJsonValue();
-							if (this.activeScene == "HiScore") {
-								this.RenderHiScores();
-							}
+							//if (this.hiScore) {
+							//	this.RenderHiScores();
+							//}
 							// foreach(var rules in this.snapshot.Children) {
 								// Debug.LogFormat("Key = {0}", rules.Key);
 							// 	foreach(var levels in rules.Children) {
@@ -137,7 +158,6 @@ public class FirebaseManagement : MonoBehaviour {
 			i++;
 			if (i <= this.HISCORE_ELEMENTS) {
 				string key = reference.Child("hiscore").Push().Key;
-				Debug.Log(key);
 				Dictionary<string, object> hiscoreDict = new Dictionary<string, object>();
 				hiscoreDict["user"] = hiScore.user;
 				hiscoreDict["score"] = hiScore.score;
@@ -150,6 +170,56 @@ public class FirebaseManagement : MonoBehaviour {
 
 	public void RenderHiScores() {
 		Debug.Log("RenderHiScores");
+		List<HiScore> hiScores = this.GetListFromSnapshot();
+		int i = 0;
+		foreach(var hiScore in hiScores) {
+			i++;
+			if (i == 1) {
+				score1.text = hiScore.score.ToString();
+				name1.text = hiScore.user;
+			} else if (i == 2) {
+				score2.text = hiScore.score.ToString();
+				name2.text = hiScore.user;
+			} else if (i == 3) {
+				score3.text = hiScore.score.ToString();
+				name3.text = hiScore.user;					
+			} else if (i == 4) {
+				score4.text = hiScore.score.ToString();
+				name4.text = hiScore.user;					
+			} else if (i == 5) {
+				score5.text = hiScore.score.ToString();
+				name5.text = hiScore.user;					
+			}
+		}
+	}
+
+	public List<HiScore> GetListFromSnapshot() {
+		List<HiScore> hiScores = new List<HiScore>();
+		foreach(var rules in this.snapshot.Children) {
+			HiScore newHiScore = new HiScore();
+			foreach(var levels in rules.Children) {
+				if (levels.Key == "score") {
+					newHiScore.score = (System.Convert.ToInt32(levels.Value)); 
+				} else if (levels.Key == "user") {
+					newHiScore.user = (string)levels.Value; 
+				}
+			}
+			hiScores.Add(newHiScore);
+		}
+		return hiScores;
+	}
+
+	public void GetTexts() {
+		name1 = GameObject.Find("Name1").GetComponent<Text>();
+		score1 = GameObject.Find("Score1").GetComponent<Text>();
+		name2 = GameObject.Find("Name2").GetComponent<Text>();
+		score2 = GameObject.Find("Score2").GetComponent<Text>();
+		name3 = GameObject.Find("Name3").GetComponent<Text>();
+		score3 = GameObject.Find("Score3").GetComponent<Text>();
+		name4 = GameObject.Find("Name4").GetComponent<Text>();
+		score4 = GameObject.Find("Score4").GetComponent<Text>();
+		name5 = GameObject.Find("Name5").GetComponent<Text>();
+		score5 = GameObject.Find("Score5").GetComponent<Text>();								
 	}
 
 

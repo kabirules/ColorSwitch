@@ -186,4 +186,7 @@ public class Player : MonoBehaviour {
 	public void BackHome() {
 		SceneManager.LoadScene("Home");
 	}
+	public void OpenHiScore() {
+		SceneManager.LoadScene("HiScore");
+	}	
 }
