@@ -27,25 +27,28 @@ public class Player : MonoBehaviour {
 	GameObject answer2;
 	GameObject answer3;
 	public GameObject explosion;
-	GameObject panel;
+	GameObject gameOverPanel;
+	GameObject hiScorePanel;
 	float maxY; // the highest point the player every got
 	public GameObject playerFX;
 	public GameObject answerFX;
 	GameObject camera;
 	FirebaseManagement firebaseManagement;
+	public InputField input;
 
 	// Use this for initialization
 	void Start () {
 		camera = GameObject.Find("Main Camera");
 		this.firebaseManagement = camera.GetComponent<FirebaseManagement>();
-		panel = GameObject.Find("Panel");
-		panel.SetActive(false);
+		gameOverPanel = GameObject.Find("GameOverPanel");
+		hiScorePanel = GameObject.Find("HiScorePanel");
+		gameOverPanel.SetActive(false);
+		hiScorePanel.SetActive(false);
 		PlayerInit();
 		this.newAnswer();
 		for (int i=0; i<4000; i++) {
 			// just a delay...
-			// Debug.Log(i);
-			int a = 0;
+			Debug.Log("");
 		}		
 	}
 
@@ -158,13 +161,22 @@ public class Player : MonoBehaviour {
 		playerAudioData.Play();
 		Instantiate(explosion, new Vector2(transform.position.x, transform.position.y), transform.rotation);
 		gameObject.SetActive(false);
-		panel.SetActive(true);
+		gameOverPanel.SetActive(true);
 		PlayerPrefs.SetInt("myhiscore", this.currentValue);
 		if (this.firebaseManagement.IsHiScore(this.currentValue)) {
-			// TODO ask for username
-			this.firebaseManagement.SaveHiScore("username", this.currentValue);
+			hiScorePanel.SetActive(true);
 		};
 	}
+
+	// Invoked from HiScorePanel
+	public void PassUsername() {
+		this.firebaseManagement.SaveHiScore(input.text, this.currentValue);
+		this.hiScorePanel.SetActive(false);
+	}
+
+	public void CloseHiScorePanel() {
+		this.hiScorePanel.SetActive(false);
+	}	
 
 	public void ReloadScene() {
 		Scene scene = SceneManager.GetActiveScene(); 

@@ -148,6 +148,7 @@ public class FirebaseManagement : MonoBehaviour {
 		}
 	}
 
+
 	//Insert
 	/*
 				HiScore hiscore1 = new HiScore("Manolo", 100);
