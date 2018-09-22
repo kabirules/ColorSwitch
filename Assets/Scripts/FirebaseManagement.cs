@@ -83,20 +83,27 @@ public class FirebaseManagement : MonoBehaviour {
 		});
 	}
 
-	// True if the passed score is top ten (or three?)
+	// True if the passed score is top ten (or three, or five, or...)
 	public bool IsHiScore(int myScore) {
 		bool result = false;
 		foreach(var rules in this.snapshot.Children) {
 			foreach(var levels in rules.Children) {
-				int score = levels.Value; // TODO get only score, avoid user!!
-				if (System.Convert.ToInt32(levels.Value) < myScore) {
-					result = true;
+				if (levels.Key == "score") {
+					int score = (System.Convert.ToInt32(levels.Value)); 
+					if (score < myScore) {
+						return true;
+					}
 				}
 			}
 		}
-		Debug.Log("IsHiscore: " + result);
 		return result;
-	}	
+	}
+
+	// Saves the full list of hiscores, 
+	// including the one passed by parameter
+	public void SaveHiScore(string user, int score) {
+		HiScore myHiScore = new HiScore(user, score);
+	}
 
 	//Insert
 	/*
