@@ -27,6 +27,10 @@ public class HomeManager : MonoBehaviour {
 		SceneManager.LoadScene("Main");
 	}
 
+	public void OpenHiScore() {
+		SceneManager.LoadScene("HiScore");
+	}	
+
 	public void GenerateAnswers() {
 		answer1 = Instantiate(answerPrefab, new Vector2(0f, 0f), transform.rotation);
 		answer2 = Instantiate(answerPrefab, new Vector2(-3f, 3f), transform.rotation);
