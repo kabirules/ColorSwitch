@@ -5,6 +5,7 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class FirebaseManagement : MonoBehaviour {
 
@@ -12,9 +13,11 @@ public class FirebaseManagement : MonoBehaviour {
 	public DataSnapshot snapshot;
 
 	public int HISCORE_ELEMENTS = 5; //Max number of elements in the hiscore list/table
+	string activeScene;
 
 	// Use this for initialization
 	void Start () {
+		this.activeScene = SceneManager.GetActiveScene().name;
 		// PlayerPrefs.DeleteKey("snapshot");
 		// PlayerPrefs.DeleteKey("myhiscore");
 		FirebaseInit();
@@ -53,14 +56,6 @@ public class FirebaseManagement : MonoBehaviour {
 				Debug.Log("Firebase ready!");
 				FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
 				DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-				HiScore hiscore1 = new HiScore("Manolo", 100);
-				string key = reference.Child("hiscore").Push().Key;
-				Dictionary<string, object> hiscore1Dict = new Dictionary<string, object>();
-				hiscore1Dict["user"] = hiscore1.user;
-				hiscore1Dict["score"] = hiscore1.score;
-				Dictionary<string, object> dict = new Dictionary<string, object>();
-				dict["/hiscore/"+key] = hiscore1Dict;
-				// reference.UpdateChildrenAsync(dict);
 				// Read data
 				FirebaseDatabase.DefaultInstance
 					.GetReference("hiscore")
@@ -71,13 +66,16 @@ public class FirebaseManagement : MonoBehaviour {
 							this.snapshot = task1.Result;
 							// Do something with snapshot...
 							this.strSnapshot = this.snapshot.GetRawJsonValue();
-							foreach(var rules in this.snapshot.Children) {
+							if (this.activeScene == "HiScore") {
+								this.RenderHiScores();
+							}
+							// foreach(var rules in this.snapshot.Children) {
 								// Debug.LogFormat("Key = {0}", rules.Key);
-								foreach(var levels in rules.Children) {
+							// 	foreach(var levels in rules.Children) {
 									// Debug.Log(levels.Key);
 									// Debug.Log(levels.Value);
-								}
-							}
+							// 	}
+							//}
 						}
       			});				
 			} else {
@@ -109,6 +107,7 @@ public class FirebaseManagement : MonoBehaviour {
 	// Saves the full list of hiscores, 
 	// including the one passed by parameter
 	public void SaveHiScore(string user, int score) {
+		// First get the full list and add our HiScore
 		HiScore myHiScore = new HiScore(user, score);
 		List<HiScore> hiScores = new List<HiScore>();
 		hiScores.Add(myHiScore);
@@ -123,10 +122,11 @@ public class FirebaseManagement : MonoBehaviour {
 			}
 			hiScores.Add(newHiScore);
 		}
+		// Sort the list
 		List<HiScore> sortedHiScores = hiScores.OrderByDescending(o=>o.score).ToList();
-		foreach(var hiScore in sortedHiScores) {
-			Debug.Log(hiScore.user + ": " + hiScore.score);
-		}
+		//foreach(var hiScore in sortedHiScores) {
+		//	Debug.Log(hiScore.user + ": " + hiScore.score);
+		//}
 		// Actually save the correctly sorted list
 		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
@@ -148,6 +148,10 @@ public class FirebaseManagement : MonoBehaviour {
 		}
 	}
 
+	public void RenderHiScores() {
+		Debug.Log("RenderHiScores");
+	}
+
 
 	//Insert
 	/*
@@ -161,4 +165,16 @@ public class FirebaseManagement : MonoBehaviour {
 				string json = JsonUtility.ToJson(hiscore2);
 				reference.Child("hiscore").SetRawJsonValueAsync(json);	
 	 */
+
+	//Push
+	/*		 
+				HiScore hiscore1 = new HiScore("Manolo", 100);
+				string key = reference.Child("hiscore").Push().Key;
+				Dictionary<string, object> hiscore1Dict = new Dictionary<string, object>();
+				hiscore1Dict["user"] = hiscore1.user;
+				hiscore1Dict["score"] = hiscore1.score;
+				Dictionary<string, object> dict = new Dictionary<string, object>();
+				dict["/hiscore/"+key] = hiscore1Dict;
+				reference.UpdateChildrenAsync(dict);
+	*/	
 }
