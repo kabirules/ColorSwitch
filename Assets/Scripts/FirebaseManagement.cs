@@ -120,44 +120,17 @@ public class FirebaseManagement : MonoBehaviour {
 	public void SaveHiScore(string user, int score) {
 		// First get the full list and add our HiScore
 		HiScore myHiScore = new HiScore(user, score);
-		List<HiScore> hiScores = new List<HiScore>();
+		List<HiScore> hiScores = this.GetSortedListFromSnapshot(true);
 		hiScores.Add(myHiScore);
-		foreach(var rules in this.snapshot.Children) {
-			HiScore newHiScore = new HiScore();
-			foreach(var levels in rules.Children) {
-				if (levels.Key == "score") {
-					newHiScore.score = (System.Convert.ToInt32(levels.Value)); 
-				} else if (levels.Key == "user") {
-					newHiScore.user = (string)levels.Value; 
-				}
-			}
-			hiScores.Add(newHiScore);
-		}
 		// Sort the list
 		List<HiScore> sortedHiScores = hiScores.OrderByDescending(o=>o.score).ToList();
 		// Actually save the correctly sorted list
-		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
-		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-		// Remove first all the elements of the list
-		reference.Child("hiscore").SetRawJsonValueAsync("{}");
-		int i = 0;
-		foreach(var hiScore in sortedHiScores) {
-			i++;
-			if (i <= this.HISCORE_ELEMENTS) {
-				string key = reference.Child("hiscore").Push().Key;
-				Dictionary<string, object> hiscoreDict = new Dictionary<string, object>();
-				hiscoreDict["user"] = hiScore.user;
-				hiscoreDict["score"] = hiScore.score;
-				Dictionary<string, object> dict = new Dictionary<string, object>();
-				dict["/hiscore/"+key] = hiscoreDict;
-				reference.UpdateChildrenAsync(dict);
-			}		
-		}
+		this.InsertHiScores(sortedHiScores);
 	}
 
 	public void RenderHiScores() {
 		Debug.Log("RenderHiScores");
-		List<HiScore> hiScores = this.GetListFromSnapshot();
+		List<HiScore> hiScores = this.GetSortedListFromSnapshot(true);
 		int i = 0;
 		foreach(var hiScore in hiScores) {
 			i++;
@@ -180,7 +153,8 @@ public class FirebaseManagement : MonoBehaviour {
 		}
 	}
 
-	public List<HiScore> GetListFromSnapshot() {
+	// Creates and returns a list of HiScore from DataSnapshot and sort it
+	public List<HiScore> GetSortedListFromSnapshot(bool sort) {
 		List<HiScore> hiScores = new List<HiScore>();
 		foreach(var rules in this.snapshot.Children) {
 			HiScore newHiScore = new HiScore();
@@ -193,7 +167,32 @@ public class FirebaseManagement : MonoBehaviour {
 			}
 			hiScores.Add(newHiScore);
 		}
-		return hiScores;
+		// Sort the list if requested
+		if (sort)  {
+			return hiScores.OrderByDescending(o=>o.score).ToList();
+		} else {
+			return hiScores;
+		}
+	}
+
+	public void InsertHiScores(List<HiScore> sortedHiScores) {
+		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
+		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+		// Remove first all the elements of the list
+		reference.Child("hiscore").SetRawJsonValueAsync("{}");		
+		int i = 0;
+		foreach(var hiScore in sortedHiScores) {
+			i++;
+			if (i <= this.HISCORE_ELEMENTS) {
+				string key = reference.Child("hiscore").Push().Key;
+				Dictionary<string, object> hiscoreDict = new Dictionary<string, object>();
+				hiscoreDict["user"] = hiScore.user;
+				hiscoreDict["score"] = hiScore.score;
+				Dictionary<string, object> dict = new Dictionary<string, object>();
+				dict["/hiscore/"+key] = hiscoreDict;
+				reference.UpdateChildrenAsync(dict);
+			}		
+		}		
 	}
 
 	public void GetTexts() {
