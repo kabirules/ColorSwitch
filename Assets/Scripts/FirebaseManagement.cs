@@ -27,6 +27,9 @@ public class FirebaseManagement : MonoBehaviour {
 	Text score5;
 
 	bool renderOnce;
+	DatabaseReference reference;
+	List<Text> names;
+	List<Text> scores;
 
 	// Use this for initialization
 	void Start () {
@@ -76,7 +79,7 @@ public class FirebaseManagement : MonoBehaviour {
 				// Set a flag here indiciating that Firebase is ready to use by your application.
 				Debug.Log("Firebase ready!");
 				FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
-				DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+				this.reference = FirebaseDatabase.DefaultInstance.RootReference;
 				// Read data
 				FirebaseDatabase.DefaultInstance
 					.GetReference("hiscore")
@@ -128,28 +131,17 @@ public class FirebaseManagement : MonoBehaviour {
 		this.InsertHiScores(sortedHiScores);
 	}
 
+	/*
+		Renders the Text GameObject of names and scores list, with the values taken 
+		from the DataSnapshot
+	 */
 	public void RenderHiScores() {
-		Debug.Log("RenderHiScores");
 		List<HiScore> hiScores = this.GetSortedListFromSnapshot(true);
-		int i = 0;
+		int i = -1;
 		foreach(var hiScore in hiScores) {
 			i++;
-			if (i == 1) {
-				score1.text = hiScore.score.ToString();
-				name1.text = hiScore.user;
-			} else if (i == 2) {
-				score2.text = hiScore.score.ToString();
-				name2.text = hiScore.user;
-			} else if (i == 3) {
-				score3.text = hiScore.score.ToString();
-				name3.text = hiScore.user;					
-			} else if (i == 4) {
-				score4.text = hiScore.score.ToString();
-				name4.text = hiScore.user;					
-			} else if (i == 5) {
-				score5.text = hiScore.score.ToString();
-				name5.text = hiScore.user;					
-			}
+			names[i].text = hiScore.user;
+			scores[i].text = hiScore.score.ToString();
 		}
 	}
 
@@ -176,36 +168,35 @@ public class FirebaseManagement : MonoBehaviour {
 	}
 
 	public void InsertHiScores(List<HiScore> sortedHiScores) {
-		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
-		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 		// Remove first all the elements of the list
-		reference.Child("hiscore").SetRawJsonValueAsync("{}");		
+		this.reference.Child("hiscore").SetRawJsonValueAsync("{}");		
 		int i = 0;
 		foreach(var hiScore in sortedHiScores) {
 			i++;
 			if (i <= this.HISCORE_ELEMENTS) {
-				string key = reference.Child("hiscore").Push().Key;
+				string key = this.reference.Child("hiscore").Push().Key;
 				Dictionary<string, object> hiscoreDict = new Dictionary<string, object>();
 				hiscoreDict["user"] = hiScore.user;
 				hiscoreDict["score"] = hiScore.score;
 				Dictionary<string, object> dict = new Dictionary<string, object>();
 				dict["/hiscore/"+key] = hiscoreDict;
-				reference.UpdateChildrenAsync(dict);
+				this.reference.UpdateChildrenAsync(dict);
 			}		
 		}		
 	}
 
+	/* 
+		Populates two lists of Text GameObjects, 
+		one of HiScore names and other of HiScore scores.
+		This are where the HiScores will be rendered.
+	 */
 	public void GetTexts() {
-		name1 = GameObject.Find("Name1").GetComponent<Text>();
-		score1 = GameObject.Find("Score1").GetComponent<Text>();
-		name2 = GameObject.Find("Name2").GetComponent<Text>();
-		score2 = GameObject.Find("Score2").GetComponent<Text>();
-		name3 = GameObject.Find("Name3").GetComponent<Text>();
-		score3 = GameObject.Find("Score3").GetComponent<Text>();
-		name4 = GameObject.Find("Name4").GetComponent<Text>();
-		score4 = GameObject.Find("Score4").GetComponent<Text>();
-		name5 = GameObject.Find("Name5").GetComponent<Text>();
-		score5 = GameObject.Find("Score5").GetComponent<Text>();								
+		this.names = new List<Text>();
+		this.scores = new List<Text>();
+		for (int i=1; i<=this.HISCORE_ELEMENTS; i++) {
+			 this.names.Add(GameObject.Find("Name" + i.ToString()).GetComponent<Text>());
+			 this.scores.Add(GameObject.Find("Score" + i.ToString()).GetComponent<Text>());
+		}
 	}
 
 
