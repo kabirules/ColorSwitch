@@ -87,16 +87,6 @@ public class FirebaseManagement : MonoBehaviour {
 							this.snapshot = task1.Result;
 							// Do something with snapshot...
 							this.strSnapshot = this.snapshot.GetRawJsonValue();
-							//if (this.hiScore) {
-							//	this.RenderHiScores();
-							//}
-							// foreach(var rules in this.snapshot.Children) {
-								// Debug.LogFormat("Key = {0}", rules.Key);
-							// 	foreach(var levels in rules.Children) {
-									// Debug.Log(levels.Key);
-									// Debug.Log(levels.Value);
-							// 	}
-							//}
 						}
       			});				
 			} else {
@@ -145,9 +135,6 @@ public class FirebaseManagement : MonoBehaviour {
 		}
 		// Sort the list
 		List<HiScore> sortedHiScores = hiScores.OrderByDescending(o=>o.score).ToList();
-		//foreach(var hiScore in sortedHiScores) {
-		//	Debug.Log(hiScore.user + ": " + hiScore.score);
-		//}
 		// Actually save the correctly sorted list
 		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://mathballs-0000.firebaseio.com/");
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
