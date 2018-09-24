@@ -168,7 +168,7 @@ public class Player : MonoBehaviour {
 		if (this.firebaseManagement.IsHiScore(this.currentValue)) {
 			hiScorePanel.SetActive(true);
 		};
-		//Show Ad
+		//Show Ad TODO show it randomly, not always
 		this.adMob.ShowInterstitial();
 	}
 
