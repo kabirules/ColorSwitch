@@ -34,12 +34,14 @@ public class Player : MonoBehaviour {
 	public GameObject answerFX;
 	GameObject camera;
 	FirebaseManagement firebaseManagement;
+	AdMob adMob;
 	public InputField input;
 
 	// Use this for initialization
 	void Start () {
 		camera = GameObject.Find("Main Camera");
 		this.firebaseManagement = camera.GetComponent<FirebaseManagement>();
+		this.adMob = camera.GetComponent<AdMob>();
 		gameOverPanel = GameObject.Find("GameOverPanel");
 		hiScorePanel = GameObject.Find("HiScorePanel");
 		gameOverPanel.SetActive(false);
@@ -166,6 +168,8 @@ public class Player : MonoBehaviour {
 		if (this.firebaseManagement.IsHiScore(this.currentValue)) {
 			hiScorePanel.SetActive(true);
 		};
+		//Show Ad
+		this.adMob.ShowInterstitial();
 	}
 
 	// Invoked from HiScorePanel
