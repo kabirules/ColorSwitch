@@ -7,6 +7,8 @@ FirebaseApp iOS and Android Dependencies.
   <iosPods>
     <iosPod name="Firebase/Core" version="5.5.0" minTargetSdk="8.0">
     </iosPod>
+    <iosPod name="GoogleUtilities/MethodSwizzler" version="5.2.0">
+    </iosPod>
   </iosPods>
   <androidPackages>
     <androidPackage spec="com.google.android.gms:play-services-base:15.0.1">
