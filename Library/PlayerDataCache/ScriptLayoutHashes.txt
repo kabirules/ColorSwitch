@@ -1,6 +1,6 @@
 iOS
 PlayerPath?
-/Users/javierfont/Development/Unity/ColorSwitch/Builds/v1.0.2
+/Users/javierfont/Development/Unity/ColorSwitch/Builds/v1.0.2_simulator
 SceneListBegin?
 Assets/Scenes/Home.unity
 Assets/Scenes/Main.unity
