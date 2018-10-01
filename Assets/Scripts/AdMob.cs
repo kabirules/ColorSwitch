@@ -30,7 +30,8 @@ public class AdMob : MonoBehaviour {
             // string appId = "ca-app-pub-3940256099942544~3347511713"; // TEST
 			string appId = "ca-app-pub-2228911308495304~9711757466"; // LIVE
         #elif UNITY_IPHONE
-            string appId = "ca-app-pub-3940256099942544~1458002511";
+            // string appId = "ca-app-pub-3940256099942544~1458002511"; // TEST
+			string appId = "ca-app-pub-2228911308495304~2836411242"; // LIVE
         #else
             string appId = "unexpected_platform";
         #endif
@@ -45,7 +46,8 @@ public class AdMob : MonoBehaviour {
             // string adUnitId = "ca-app-pub-3940256099942544/6300978111"; // TEST
 			string adUnitId = "ca-app-pub-2228911308495304/2188490667"; // LIVE
         #elif UNITY_IPHONE
-            string adUnitId = "ca-app-pub-3940256099942544/2934735716";
+            // string adUnitId = "ca-app-pub-3940256099942544/2934735716"; // TEST
+			string adUnitId = "ca-app-pub-2228911308495304/5922859143"; // LIVE
         #else
             string adUnitId = "unexpected_platform";
         #endif
@@ -59,7 +61,8 @@ public class AdMob : MonoBehaviour {
 			// string adUnitId = "ca-app-pub-3940256099942544/1033173712"; // TEST
 			string adUnitId = "ca-app-pub-2228911308495304/1226106249"; // LIVE
 		#elif UNITY_IPHONE
-			string adUnitId = "ca-app-pub-3940256099942544/4411468910";
+			// string adUnitId = "ca-app-pub-3940256099942544/4411468910"; // TEST
+			string adUnitId = "ca-app-pub-2228911308495304/9914731582"; // LIVE
 		#else
 			string adUnitId = "unexpected_platform";
 		#endif		
