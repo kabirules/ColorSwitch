@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 	public int generatedWrongValue1 = 0; // Random generated number, it will be the wrong answer 1
 	public int generatedWrongValue2 = 0; // Random generated number, it will be the wrong answer 2
 	public int targetValue = 0;
-	public int endValue = 99999999;	
+	public int endValue = 99999;	
 	public Text targetText;
 	public GameObject answerPrefab;
 	GameObject answer1;

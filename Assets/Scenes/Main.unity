@@ -1830,7 +1830,7 @@ MonoBehaviour:
   generatedWrongValue1: 0
   generatedWrongValue2: 0
   targetValue: 0
-  endValue: 100
+  endValue: 99999
   targetText: {fileID: 1846601468}
   answerPrefab: {fileID: 1486302375866630, guid: e044bf85681c8934bb114c6ee5ae266f,
     type: 2}
