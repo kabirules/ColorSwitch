@@ -1,6 +1,6 @@
-Android
+iOS
 PlayerPath?
-E:/Disco F/Unity/ColorSwitch/MathBalls.apk
+/Users/javierfont/Development/Unity/ColorSwitch/Builds/v1.1.0
 SceneListBegin?
 Assets/Scenes/Home.unity
 Assets/Scenes/Main.unity
