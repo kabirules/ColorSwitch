@@ -77,7 +77,14 @@ public class Player : MonoBehaviour {
         if (Input.GetKey("escape"))
         {
             SceneManager.LoadScene("Home");
-        }		
+        }
+		// Make sure player hasn't gone way too far from balls
+		if (answer1 && transform.position.y - answer1.transform.position.y > 10f)
+				answer1.transform.position = new Vector2(answer1.transform.position.x, answer1.transform.position.y + 4f);
+		if (answer2 && transform.position.y - answer2.transform.position.y > 10f)
+				answer2.transform.position = new Vector2(answer2.transform.position.x, answer2.transform.position.y + 4f);
+		if (answer3 && transform.position.y - answer3.transform.position.y > 10f)
+			answer3.transform.position = new Vector2(answer3.transform.position.x, answer3.transform.position.y + 4f);
 	}
 
 
