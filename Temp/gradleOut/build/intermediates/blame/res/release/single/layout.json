@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\bc08733d72c74b127fdecdcdfdc35c163b2a9e5b\\output\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\bc08733d72c74b127fdecdcdfdc35c163b2a9e5b\\output\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\bc08733d72c74b127fdecdcdfdc35c163b2a9e5b\\output\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\bc08733d72c74b127fdecdcdfdc35c163b2a9e5b\\output\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_action.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\bc08733d72c74b127fdecdcdfdc35c163b2a9e5b\\output\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_action.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "E:\\Disco F\\Unity\\ColorSwitch\\Temp\\gradleOut\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\usuario\\.android\\build-cache\\a04fe91a2378718e505392ce41683f98f2b3da84\\output\\res\\layout\\notification_template_big_media.xml"
+    }
+]
