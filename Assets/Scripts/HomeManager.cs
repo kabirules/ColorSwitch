@@ -8,10 +8,12 @@ public class HomeManager : MonoBehaviour {
 	public GameObject answerPrefab;
 	GameObject answer1;
 	GameObject answer2;
-	GameObject answer3;	
+	GameObject answer3;
+	AdMob adMobScript;	
 
 	// Use this for initialization
 	void Start () {
+		adMobScript = gameObject.GetComponent<AdMob>();
 		GenerateAnswers();
 	}
 	
@@ -24,10 +26,12 @@ public class HomeManager : MonoBehaviour {
 	}
 
 	public void OpenMain() {
+		adMobScript.RemoveBanner();
 		SceneManager.LoadScene("Main");
 	}
 
 	public void OpenHiScore() {
+		adMobScript.RemoveBanner();
 		SceneManager.LoadScene("HiScore");
 	}	
 

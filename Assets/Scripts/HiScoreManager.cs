@@ -8,10 +8,12 @@ public class HiScoreManager : MonoBehaviour {
 	public GameObject answerPrefab;
 	GameObject answer1;
 	GameObject answer2;
-	GameObject answer3;	
+	GameObject answer3;
+	AdMob adMobScript;
 
 	// Use this for initialization
 	void Start () {
+		adMobScript = gameObject.GetComponent<AdMob>();
 		GenerateAnswers();
 	}
 	
@@ -19,11 +21,13 @@ public class HiScoreManager : MonoBehaviour {
 	void Update () {
         if (Input.GetKey("escape"))
         {
+			adMobScript.RemoveBanner();
             SceneManager.LoadScene("Home");
         }
 	}
 
 	public void OpenHome() {
+		adMobScript.RemoveBanner();
 		SceneManager.LoadScene("Home");
 	}
 

@@ -85,4 +85,12 @@ public class AdMob : MonoBehaviour {
 			interstitial.Show();
 		}	
 	}
+
+	public void RemoveBanner() {
+		Debug.Log("Banner is going to be destroyed!");
+		if (bannerView != null) {
+			bannerView.Destroy();
+			Debug.Log("Banner destroyed!");
+		}
+	}
 }
